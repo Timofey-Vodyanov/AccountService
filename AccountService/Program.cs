@@ -1,4 +1,4 @@
-using Microsoft.OpenApi;
+using AccountService.Repositories;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
@@ -19,6 +19,7 @@ builder.Services.AddSwaggerGen(c =>
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     c.IncludeXmlComments(xmlPath);
 });
+builder.Services.AddSingleton<IAccountRepository, InMemoryAccountRepository>();
 
 var app = builder.Build();
 
