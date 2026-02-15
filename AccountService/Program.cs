@@ -1,5 +1,6 @@
 using AccountService.Data;
 using AccountService.Repositories;
+using AccountService.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
@@ -23,6 +24,8 @@ builder.Services.AddSwaggerGen(c =>
 });
 //builder.Services.AddSingleton<IAccountRepository, InMemoryAccountRepository>();
 builder.Services.AddScoped<IAccountRepository, EfAccountRepository>();
+builder.Services.AddScoped<IAccountService, AccountService.Services.AccountService>();
+builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
