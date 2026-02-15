@@ -21,7 +21,8 @@ builder.Services.AddSwaggerGen(c =>
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     c.IncludeXmlComments(xmlPath);
 });
-builder.Services.AddSingleton<IAccountRepository, InMemoryAccountRepository>();
+//builder.Services.AddSingleton<IAccountRepository, InMemoryAccountRepository>();
+builder.Services.AddScoped<IAccountRepository, EfAccountRepository>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
