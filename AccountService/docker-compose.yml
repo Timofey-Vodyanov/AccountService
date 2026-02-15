@@ -17,11 +17,13 @@ services:
   accountservice:
     build:
       context: .
-      dockerfile: AccountService/Dockerfile
+      dockerfile: Dockerfile
     container_name: account_api
     ports:
-      - "80:80"
+      - "8080:80"
     environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
       - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=accountdb;Username=postgres;Password=postgres
     depends_on:
       - postgres
