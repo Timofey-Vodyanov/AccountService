@@ -16,6 +16,11 @@ public class TransactionsController : ControllerBase
         _transactionService = transactionService;
     }
 
+    /// <summary>
+    /// Получить транзакцию по идентификатору.
+    /// </summary>
+    /// <param name="id">Идентификатор транзакции</param>
+    /// <returns>Транзакция</returns>
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(TransactionResponse), 200)]
     [ProducesResponseType(404)]
@@ -26,6 +31,10 @@ public class TransactionsController : ControllerBase
         return Ok(transaction);
     }
 
+    /// <summary>
+    /// Выполнить перевод между счетами.
+    /// </summary>
+    /// <param name="request">Данные перевода</param>
     [HttpPost("transfer")]
     [ProducesResponseType(200)]
     [ProducesResponseType(400)]
