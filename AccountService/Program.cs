@@ -1,4 +1,6 @@
+using AccountService.Data;
 using AccountService.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
@@ -29,6 +31,9 @@ builder.Services.AddCors(options =>
               .AllowAnyHeader();
     });
 });
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(connectionString));
 
 var app = builder.Build();
 
